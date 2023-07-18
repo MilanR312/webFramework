@@ -1,0 +1,27 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <script>
+        let conn = new WebSocket("ws://localhost:5098/web");
+        conn.onmessage = (mess) => {
+            let message = mess.data;
+
+            let r = message.split(":");
+            console.log(message);
+            let element = document.getElementById(r[0]);
+            if (element != null){
+                console.log("setting data " + r[1]);
+                element.textContent = r[1];
+            }
+        }
+        conn.onopen = () => {
+            console.log("socket is now open")
+        }
+        conn.onerror = (err) => {
+            console.log("socket error")
+        }
+    </script>
+</head>
+<body>
+    {{body}}
+</body>
