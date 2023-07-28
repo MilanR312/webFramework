@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <script>
-        let conn = new WebSocket("ws://localhost:8082/web");
+        let conn = new WebSocket("ws://localhost:5098/web");
         conn.onmessage = (mess) => {
             let message = mess.data;
 
@@ -23,5 +23,5 @@
     </script>
 </head>
 <body>
-    |body|
+    {{body}}
 </body>

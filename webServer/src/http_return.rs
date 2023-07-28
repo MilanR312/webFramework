@@ -11,7 +11,6 @@ pub struct HttpReturn{
 impl HttpReturn {
     
     pub fn new(version: &str) -> Self {
-        
         Self {
             version: format!("HTTP/{version}"),
             status_code: 500,
@@ -21,7 +20,8 @@ impl HttpReturn {
         }
     }
     pub fn to_string(self) -> String {
-        let headers: String = self.headers.into_iter().map(|val| format!("{val}\r\n")).collect();
+        let headers: String = self.headers.into_iter()
+            .map(|val| format!("{val}\r\n")).collect();
 
         let mut out = format!("{} {} {}\r\n{}\r\n", self.version, self.status_code, self.reason, headers);
         if headers.is_empty() {

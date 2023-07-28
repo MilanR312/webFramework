@@ -3,4 +3,5 @@
 members = [
     "webServer",
     "macros",
+    "achernar"
 ]
