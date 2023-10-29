@@ -9,6 +9,7 @@ mod http_return;
 //make components
 
 use achernar;
+use macros::load_components;
 
 
 #[tokio::main]
@@ -19,7 +20,7 @@ async fn main() -> anyhow::Result<()> {
     let set = achernar::settings::Settings {
         ip_address: "127.0.0.1".to_string(),
         port: 8081,
-        shared_folder: load_pages!("./webServer/src/shared"),
+        shared_folder: load_components!("./webServer/src/shared"),
         pages_folder: load_pages!("./webServer/src/pages")
     };
 

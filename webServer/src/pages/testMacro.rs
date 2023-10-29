@@ -11,27 +11,29 @@ html!(
     <button onclick=|decr|>
         decr
     </button>
+    <button onclick=|reset|>
+        reset
+    </button>
+    <user />
 );
 
 code!(
     {
         #[updateAble]
-        test: u8;
-        #[updateAble]
-        clk: u8;
-    
+        test: i8;
+
         fn init(&mut self){
             self.test = 8;
-            self.clk = 2;
         }
 
-        async fn incr(&mut self, _val: &str){
-            self.set_test(&(self.test + 1).to_string()).await;
-            self.set_clk(&(self.clk + 1).to_string()).await;
+        async fn incr(&mut self, _val: i8){
+            self.set_test(self.test + 1).await;
         }
-        async fn decr(&mut self, _val: &str){
-            self.set_test(&(self.test - 1).to_string()).await;
-            self.set_clk(&(self.clk - 1).to_string()).await;
+        async fn decr(&mut self, _val: i8){
+            self.set_test(self.test - 1).await;
+        }
+        async fn reset(&mut self, val: i8){
+            self.set_test(8).await;
         }
     }
 );

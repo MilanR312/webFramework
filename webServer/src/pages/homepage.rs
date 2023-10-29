@@ -1,7 +1,6 @@
 use macros::*;
 
 route!("/");
-
 html_from_file!("./webServer/src/pages/homepage.html");
 
 code!(

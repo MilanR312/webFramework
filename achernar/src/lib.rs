@@ -10,7 +10,7 @@ use futures_util::{SinkExt, StreamExt};
 use crate::https::ResponseBuilder;
 mod https;
 pub mod settings;
-
+pub mod html;
 //use macros::*;
 pub mod page;
 
@@ -140,7 +140,8 @@ async fn get_page(path: &str, settings: &Settings) -> Option<String> {
     
     //if it is return the string equivalent
     if let Some(val) = binding.get(path) {
-        let content = val.eval();
+        let components = settings.shared_folder.lock().await;
+        let content = val.eval(components);
         info!(?content, "found rust page");
 
         return Some(content);
